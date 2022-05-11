@@ -8,18 +8,17 @@ const router = useRouter();
 const groups = ref([])
 
 const openGroup = (group) => {
-  console.log(group);
   router.push(`/group/${group.id}`)
 }
 
 if (currentUser.getUsername() === "") {
   router.push("/welcome");
+} else {
+  axios.get(`/get-groups/${currentUser.getUsername()}`)
+      .then(function (response) {
+        groups.value = response.data;
+      })
 }
-axios.get(`/get-groups/${currentUser.getUsername()}`)
-    .then(function (response) {
-      groups.value = response.data;
-    })
-
 </script>
 
 <template>
@@ -44,11 +43,9 @@ axios.get(`/get-groups/${currentUser.getUsername()}`)
 
     </div>
   </w-flex>
-
 </template>
 
 <style>
-
 .group {
   background-color: #ffe4d8;
 }
@@ -56,5 +53,4 @@ axios.get(`/get-groups/${currentUser.getUsername()}`)
   background-color: #ffcbb4;
   cursor: pointer;
 }
-
 </style>

@@ -8,7 +8,6 @@ const login = () => {
   currentUser.setUsername("kcnklub");
   router.push("/");
 }
-
 </script>
 
 <template>
@@ -42,7 +41,6 @@ const login = () => {
 </template>
 
 <style scoped>
-
 .user-login {
   max-height: 5em;
 }
@@ -51,5 +49,4 @@ const login = () => {
   width: 15em;
   background-color: #ffe4d8;
 }
-
 </style>

@@ -5,7 +5,6 @@ import Login from "../components/Login.vue";
 import CreateGroup from "../components/CreateGroup.vue";
 import Group from "../components/Group.vue";
 
-
 const router = createRouter({
     history: createWebHistory(),
     routes: [
