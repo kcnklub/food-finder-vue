@@ -19,5 +19,4 @@ const createGroup = () => {
     </w-button>
   </w-flex>
 </template>
-
 <style></style>

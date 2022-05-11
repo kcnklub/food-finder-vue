@@ -1,16 +1,60 @@
 <script setup>
 import {currentUser} from '@/model/CurrentUser';
 import {useRouter} from "vue-router";
+import axios from "axios";
+import {ref} from "vue";
 
-if(currentUser.getUsername() === ""){
-  useRouter().push("/welcome");
+const router = useRouter();
+const groups = ref([])
+
+const openGroup = (group) => {
+  console.log(group);
+  router.push(`/group/${group.id}`)
 }
+
+if (currentUser.getUsername() === "") {
+  router.push("/welcome");
+}
+axios.get(`/get-groups/${currentUser.getUsername()}`)
+    .then(function (response) {
+      groups.value = response.data;
+    })
+
 </script>
 
 <template>
-  Home
+  <w-flex column align-center justify-center>
+    <div class="xs7">
+      <h1 class="headline">Groups</h1>
+      <div>
+        <w-flex
+            class="group bdrs2 pa3 mt3"
+            v-for="group in groups"
+            :key="group"
+            @click="openGroup(group)"
+        >
+          <p class="xs11">
+            {{ group.groupName }}
+          </p>
+          <p class="xs1">
+            {{ group.numberOfMembers }}
+          </p>
+        </w-flex>
+      </div>
+
+    </div>
+  </w-flex>
+
 </template>
 
 <style>
+
+.group {
+  background-color: #ffe4d8;
+}
+.group:hover {
+  background-color: #ffcbb4;
+  cursor: pointer;
+}
 
 </style>

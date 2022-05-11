@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import {currentUser} from "@/model/CurrentUser";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 const login = () => {
-  currentUser.setUsername("Kcnklub");
+  currentUser.setUsername("kcnklub");
+  router.push("/");
 }
 
 </script>
