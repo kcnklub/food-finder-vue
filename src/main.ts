@@ -7,6 +7,7 @@ import 'wave-ui/dist/wave-ui.css';
 import {router} from "@/router/router";
 import {createServer} from "miragejs";
 import {createPinia} from "pinia";
+import 'material-design-icons/iconfont/material-icons.css';
 
 createServer({
     routes() {
@@ -40,7 +41,7 @@ createServer({
                     {
                         id: "ChIJb1IbqqMy34cRsfkkFHh-yyc",
                         name: "Subway",
-                        membersThatLiked: ["Kyle", "Clayton"]
+                        membersThatLiked: ["Kyle", "Clayton", "Steven"]
                     }
                 ]
             }
@@ -51,7 +52,18 @@ createServer({
                 groupName: "Date Night",
                 numberOfMembers: 2,
                 members: ["Kyle", "Shannon"],
-                likedPlaces: []
+                likedPlaces: [
+                    {
+                        id: "ChIJFx9-iGst34cR1dlmJDxXusM",
+                        name: "Buffalo Wild Wings",
+                        membersThatLiked: ["Kyle", "Steven"]
+                    },
+                    {
+                        id: "ChIJb1IbqqMy34cRsfkkFHh-yyc",
+                        name: "Subway",
+                        membersThatLiked: ["Kyle", "Clayton"]
+                    }
+                ]
             }
         });
         this.get("place", () => {

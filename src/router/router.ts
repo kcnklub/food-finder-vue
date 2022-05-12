@@ -33,7 +33,7 @@ const router = createRouter({
                     component: GroupView,
                     children: [
                         {
-                            path: "home", component: LikedPlaces
+                            path: "", component: LikedPlaces
                         },
                         {
                             path: "swipe", component: PlaceSlider
