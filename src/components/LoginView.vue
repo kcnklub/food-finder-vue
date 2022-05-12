@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import {currentUser} from "@/model/CurrentUser";
 import {useRouter} from "vue-router";
-
+import {currentUserStore} from "@/model/CurrentUser";
 const router = useRouter();
-
 const login = () => {
-  currentUser.setUsername("kcnklub");
+  currentUserStore().setUsername("kcnklub");
   router.push("/");
 }
 </script>
@@ -17,7 +15,7 @@ const login = () => {
     <div>
       <p class="headline">Welcome!</p>
     </div>
-    <div class="login-container bdrs2 pa3" shadow>
+    <div class="login-container bdrs2 pa3">
       <w-input class="user-login" color="deep-orange-dark3" type="text">
         <span class="deep-orange-dark3">
           Username

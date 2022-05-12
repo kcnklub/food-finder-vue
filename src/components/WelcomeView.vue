@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 const createGroup = () => {
-  console.log("creatingGroup");
+  router.push("/group/create-group")
 }
 </script>
 

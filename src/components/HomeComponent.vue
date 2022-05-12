@@ -1,20 +1,22 @@
 <script setup>
-import {currentUser} from '@/model/CurrentUser';
+import {currentUserStore} from '@/model/CurrentUser';
 import {useRouter} from "vue-router";
 import axios from "axios";
 import {ref} from "vue";
 
+const store = currentUserStore();
 const router = useRouter();
-const groups = ref([])
 
+const groups = ref([])
 const openGroup = (group) => {
   router.push(`/group/${group.id}`)
 }
 
-if (currentUser.getUsername() === "") {
+const username = store.username;
+if (username === "") {
   router.push("/welcome");
 } else {
-  axios.get(`/get-groups/${currentUser.getUsername()}`)
+  axios.get(`/get-groups/${username}`)
       .then(function (response) {
         groups.value = response.data;
       })

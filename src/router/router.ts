@@ -1,9 +1,12 @@
 import {createRouter, createWebHistory} from "vue-router";
-import Welcome from "../components/Welcome.vue";
+import WelcomeView from "../components/WelcomeView.vue";
 import HomeComponent from "../components/HomeComponent.vue";
-import Login from "../components/Login.vue";
+import LoginView from "../components/LoginView.vue";
 import CreateGroup from "../components/CreateGroup.vue";
-import Group from "../components/Group.vue";
+import GroupsView from "../components/GroupsView.vue";
+import GroupView from "../components/GroupView.vue";
+import LikedPlaces from "../components/LikedPlaces.vue";
+import PlaceSlider from "../components/PlaceSlider.vue"
 
 const router = createRouter({
     history: createWebHistory(),
@@ -14,19 +17,32 @@ const router = createRouter({
         },
         {
             path: "/welcome",
-            component: Welcome
+            component: WelcomeView
         },
         {
             path: "/login",
-            component: Login
+            component: LoginView
         },
         {
             path: "/group",
-            component: CreateGroup,
+            component: GroupsView,
+            redirect: "/",
             children: [
                 {
                     path: ":id",
-                    component: Group
+                    component: GroupView,
+                    children: [
+                        {
+                            path: "home", component: LikedPlaces
+                        },
+                        {
+                            path: "swipe", component: PlaceSlider
+                        }
+                    ]
+                },
+                {
+                    path: "create-group",
+                    component: CreateGroup
                 }
             ]
         }

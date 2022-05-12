@@ -1,18 +1,21 @@
+import {defineStore} from "pinia";
 
-
-class CurrentUser {
-    private username: string;
-    constructor() {
-        this.username = "";
-    }
-
-    getUsername() {
-        return this.username;
-    }
-
-    setUsername(username: string) {
-        this.username = username;
-    }
+export interface User {
+    username: string;
 }
 
-export const currentUser = new CurrentUser();
+export const currentUserStore = defineStore('user', {
+    state: () => ({
+        user: {username: ""} as User
+    }),
+
+    getters: {
+        username: state => state.user.username
+    },
+
+    actions: {
+        setUsername(username: string) {
+            this.user.username = username;
+        }
+    }
+})
