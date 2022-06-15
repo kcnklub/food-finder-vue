@@ -10,7 +10,9 @@ const login = () => {
 
 <template>
   <w-flex
-      column align-center justify-center
+      column
+      align-center
+      justify-center
   >
     <div>
       <p class="headline">Welcome!</p>
