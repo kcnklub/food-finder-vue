@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {currentUserStore} from '@/model/CurrentUser';
 import {useRouter} from "vue-router";
 import axios from "axios";
