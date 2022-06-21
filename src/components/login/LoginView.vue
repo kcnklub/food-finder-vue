@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
 import {currentUserStore} from "@/model/CurrentUser";
+import UserFormView from "@/components/login/UserFormView.vue";
+
 const router = useRouter();
 const login = () => {
   currentUserStore().setUsername("kcnklub");
@@ -9,13 +11,8 @@ const login = () => {
 </script>
 
 <template>
-  <w-flex
-      column align-center justify-center
-  >
-    <div>
-      <p class="headline">Welcome!</p>
-    </div>
-    <div class="login-container bdrs2 pa3">
+  <user-form-view>
+    <template v-slot:inputs>
       <w-input class="user-login" color="deep-orange-dark3" type="text">
         <span class="deep-orange-dark3">
           Username
@@ -26,25 +23,27 @@ const login = () => {
           Password
         </span>
       </w-input>
+    </template>
+    <template v-slot:button>
       <w-button
           bg-color="deep-orange-dark3"
           class="mt5 deep-orange-light5"
           xl
           @click="login"
       >
-        Sign Up
+        Sign In!
       </w-button>
-    </div>
-  </w-flex>
+    </template>
+    <template v-slot:extra-data>
+      <p>New User?
+        <router-link to="signup">Sign Up!</router-link>
+      </p>
+    </template>
+  </user-form-view>
 </template>
 
 <style scoped>
 .user-login {
   max-height: 5em;
-}
-
-.login-container {
-  width: 15em;
-  background-color: #ffe4d8;
 }
 </style>
