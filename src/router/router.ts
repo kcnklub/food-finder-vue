@@ -7,6 +7,7 @@ import GroupsView from "../components/GroupsView.vue";
 import GroupView from "../components/GroupView.vue";
 import LikedPlaces from "../components/LikedPlaces.vue";
 import PlaceSlider from "../components/PlaceSlider.vue"
+import SignUpView from "@/components/SignUpView.vue";
 
 const router = createRouter({
     history: createWebHistory(),
@@ -22,6 +23,10 @@ const router = createRouter({
         {
             path: "/login",
             component: LoginView
+        },
+        {
+            path: "/signup",
+            component: SignUpView
         },
         {
             path: "/group",
