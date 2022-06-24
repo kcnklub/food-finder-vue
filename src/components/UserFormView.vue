@@ -1,21 +1,22 @@
 <template>
-  <w-flex column align-center justify-center>
-    <div>
-      <p class="headline">Welcome!</p>
-    </div>
-    <div class="login-container bdrs2 pa3">
-      <slot name="inputs"/>
-      <slot name="button"/>
-    </div>
-    <div>
-        <slot name="extra-data"/>
+  <div class="relative flex justify-center mt-24">
+    <div class="rounded bg-gradient-to-r from-cyan-500 to-blue-500 w-1/2 text-white">
+      <div class="p-12">
+        <div>
+          <p class="text-2xl">Welcome!</p>
+        </div>
+        <div class="">
+          <slot name="inputs"/>
+          <slot name="button"/>
+        </div>
+        <div>
+          <slot name="extra-data"/>
+        </div>
       </div>
-  </w-flex>
+
+    </div>
+  </div>
 </template>
 
 <style>
-.login-container {
-  width: 15em;
-  background-color: #ffe4d8;
-}
 </style>

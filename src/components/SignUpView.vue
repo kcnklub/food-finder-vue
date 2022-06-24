@@ -17,10 +17,11 @@ const signUp = () => {
     confirmedPassword: confirmedPassword.value === undefined ? "" : confirmedPassword.value.trim()
   })
 
-  if(!validationOutput.isSuccess) {
+  if (!validationOutput.isSuccess) {
     errorMessage.value = validationOutput.errorMessage;
   } else {
     errorMessage.value = "";
+    console.log("passed client side validation")
   }
 }
 </script>
@@ -28,50 +29,66 @@ const signUp = () => {
 <template>
   <user-form-view>
     <template v-slot:inputs>
-      <p class="error-message">{{ errorMessage }}</p>
-      <w-input v-model="username" class="user-login" color="deep-orange-dark3" type="text">
-        <span class="deep-orange-dark3">
-          Username
-        </span>
-      </w-input>
-      <w-input v-model="email" class="user-login" color="deep-orange-dark3" type="text">
-        <span class="deep-orange-dark3">
-          Email
-        </span>
-      </w-input>
-      <w-input v-model="password" class="user-login" color="deep-orange-dark3" type="password">
-        <span class="deep-orange-dark3">
-          Password
-        </span>
-      </w-input>
-      <w-input v-model="confirmedPassword" class="user-login" color="deep-orange-dark3" type="password">
-        <span class="deep-orange-dark3">
-          Confirm Password
-        </span>
-      </w-input>
+      <p class="error-message rounded bg-red-400 text-white text-center">{{ errorMessage }}</p>
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Username
+      </label>
+      <input
+          v-model="username"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="username"
+          type="text"
+          placeholder="Username">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Email
+      </label>
+      <input
+          v-model="email"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email"
+          type="text"
+          placeholder="Email">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Password
+      </label>
+      <input
+          v-model="password"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="password"
+          type="password"
+          placeholder="******************">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+        Confirm Password
+      </label>
+      <input
+          v-model="confirmedPassword"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="confirm-password"
+          type="password"
+          placeholder="******************">
     </template>
     <template v-slot:button>
-      <w-button
-          id="sign-up-button"
-          bg-color="deep-orange-dark3"
-          class="sign-up-button mt5 deep-orange-light5"
-          xl
+      <button
+          class="btn btn-orange mt-3"
           @click="signUp"
       >
-        Sign Up
-      </w-button>
+        Sign In!
+      </button>
     </template>
   </user-form-view>
 </template>
 
 <style>
-.user-login {
-  max-height: 5em;
-  margin-top: 5px;
+.btn {
+  @apply font-bold py-2 px-4 rounded;
 }
 
-.error-message {
-  color: red;
+.btn-orange {
+  @apply bg-orange-500;
+}
+
+.btn-orange:hover {
+  @apply bg-orange-700;
 }
 </style>
 

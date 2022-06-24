@@ -5,8 +5,6 @@ import LoginView from "../components/LoginView.vue";
 import CreateGroup from "../components/CreateGroup.vue";
 import GroupsView from "../components/GroupsView.vue";
 import GroupView from "../components/GroupView.vue";
-import LikedPlaces from "../components/LikedPlaces.vue";
-import PlaceSlider from "../components/PlaceSlider.vue"
 import SignUpView from "@/components/SignUpView.vue";
 
 const router = createRouter({
@@ -35,15 +33,7 @@ const router = createRouter({
             children: [
                 {
                     path: ":id",
-                    component: GroupView,
-                    children: [
-                        {
-                            path: "", component: LikedPlaces
-                        },
-                        {
-                            path: "swipe", component: PlaceSlider
-                        }
-                    ]
+                    component: GroupView
                 },
                 {
                     path: "create-group",
