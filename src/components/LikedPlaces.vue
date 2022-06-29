@@ -12,31 +12,35 @@ const likedPlaced = computed(() => {
 </script>
 
 <template>
-  <w-flex column align-center justify-center>
-    <div class="xs7">
-      <div>
-        <w-flex
-            class="group bdrs2 pa3 mt3"
-            v-for="place in likedPlaced"
-            :key="place.id"
-        >
-          <p class="xs11">
-            {{ place.name }}
-          </p>
-          <p class="xs1">
-            {{ place.membersThatLiked.length }}
-          </p>
-        </w-flex>
+  <div class="relative flex justify-center mt-24">
+    <div class="rounded bg-gradient-to-r from-cyan-500 to-blue-500 w-1/2 text-white">
+      <div class="p-12">
+        <h1 class="text-2xl">Groups</h1>
+        <div>
+          <div
+              class="group flex justify-between"
+              v-for="place in likedPlaced"
+              :key="place.id"
+              @click="openGroup(group)"
+          >
+            <p>
+              {{ place.name }}
+            </p>
+            <p>
+              {{ place.membersThatLiked.length }}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </w-flex>
-
+  </div>
 </template>
 
 <style scoped>
 .group {
   background-color: #ffe4d8;
 }
+
 .group:hover {
   background-color: #ffcbb4;
   cursor: pointer;

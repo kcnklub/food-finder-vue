@@ -1,13 +1,9 @@
 import {createApp} from 'vue';
 import App from './App.vue';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import WaveUI from 'wave-ui';
-import 'wave-ui/dist/wave-ui.css';
 import {router} from "@/router/router";
 import {createServer} from "miragejs";
 import {createPinia} from "pinia";
-import 'material-design-icons/iconfont/material-icons.css';
+import "./index.css";
 
 createServer({
     routes() {
@@ -93,5 +89,4 @@ createServer({
 const app = createApp(App)
 app.use(router);
 app.use(createPinia());
-new WaveUI(app, {});
 app.mount('#app')
