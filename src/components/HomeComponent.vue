@@ -8,7 +8,7 @@ import type {Group} from "@/model/Group";
 const store = currentUserStore();
 const router = useRouter();
 
-const groups = ref([])
+const groups = ref([] as Group[])
 const openGroup = (group: Group) => {
   router.push(`/group/${group.id}`)
 }
@@ -33,7 +33,7 @@ if (username === "") {
           <div
               class="group flex justify-between"
               v-for="group in groups"
-              :key="group"
+              :key="group.groupName"
               @click="openGroup(group)"
           >
             <p>

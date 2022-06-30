@@ -19,15 +19,14 @@ const likedPlaced = computed(() => {
         <div>
           <div
               class="group flex justify-between"
-              v-for="place in likedPlaced"
-              :key="place.id"
-              @click="openGroup(group)"
+              v-for="group in likedPlaced"
+              :key="group.id"
           >
             <p>
-              {{ place.name }}
+              {{ group.name }}
             </p>
             <p>
-              {{ place.membersThatLiked.length }}
+              {{ group.membersThatLiked.length }}
             </p>
           </div>
         </div>
