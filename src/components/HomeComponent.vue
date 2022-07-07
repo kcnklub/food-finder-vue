@@ -44,7 +44,13 @@ if (username === "") {
             </p>
           </div>
         </div>
+        <router-link to="/group/create-group">
+          <button class="btn btn-orange" >
+            Create New Group
+          </button>
+        </router-link>
       </div>
+
     </div>
   </div>
 </template>
@@ -58,6 +64,16 @@ if (username === "") {
   mt-1
   p-1;
   cursor: pointer;
+}
+
+.btn {
+  @apply font-bold py-2 px-4 rounded mt-2;
+}
+.btn-orange {
+  @apply bg-orange-500;
+}
+.btn-orange:hover {
+  @apply bg-orange-700;
 }
 
 </style>
