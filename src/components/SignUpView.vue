@@ -69,7 +69,7 @@ const signUp = () => {
     </template>
     <template v-slot:button>
       <button
-          class="btn btn-orange mt-3 sign-up-button"
+          class="btn btn-orange mt-3"
           @click="signUp"
       >
         Sign In!
