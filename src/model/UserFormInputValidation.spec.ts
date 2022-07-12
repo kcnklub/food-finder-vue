@@ -1,14 +1,15 @@
 import {expect, it} from 'vitest';
-import {validateUserInput} from "@/model/UserFormInputValidation";
 
-import type {UserInput, ValidationOutput} from "@/model/UserFormInputValidation";
+import type {ValidationOutput} from "@/model/CurrentUser";
+import type {CreateNewUserRequest} from "@/model/CurrentUser";
+import {validateUserInput} from "@/model/CurrentUser";
 
 it("Username is empty", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "",
         email: "",
         password: "",
-        confirmedPassword: ""
+        confirmPassword: ""
     }
 
     const output: ValidationOutput = validateUserInput(input);
@@ -18,11 +19,11 @@ it("Username is empty", () => {
 })
 
 it("Username isn't long enough", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "a",
         email: "",
         password: "",
-        confirmedPassword: ""
+        confirmPassword: ""
     }
 
     const output: ValidationOutput = validateUserInput(input);
@@ -32,11 +33,11 @@ it("Username isn't long enough", () => {
 })
 
 it("Email is missing", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "username",
         email: "",
         password: "",
-        confirmedPassword: ""
+        confirmPassword: ""
     }
 
     const output: ValidationOutput = validateUserInput(input);
@@ -46,11 +47,11 @@ it("Email is missing", () => {
 })
 
 it("Email isn't long enough", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "username",
         email: "a",
         password: "",
-        confirmedPassword: ""
+        confirmPassword: ""
     }
 
     const output: ValidationOutput = validateUserInput(input);
@@ -60,11 +61,11 @@ it("Email isn't long enough", () => {
 })
 
 it("Password is missing", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "username",
         email: "kyle@foodfinder.com",
         password: "",
-        confirmedPassword: ""
+        confirmPassword: ""
     }
 
     const output: ValidationOutput = validateUserInput(input);
@@ -74,11 +75,11 @@ it("Password is missing", () => {
 })
 
 it("Password isn't long enough", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "username",
         email: "kyle@foodfinder.com",
         password: "a",
-        confirmedPassword: ""
+        confirmPassword: ""
     }
 
     const output: ValidationOutput = validateUserInput(input);
@@ -88,11 +89,11 @@ it("Password isn't long enough", () => {
 })
 
 it("Confirm password doesn't equal password", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "username",
         email: "kyle@foodfinder.com",
         password: "something",
-        confirmedPassword: ""
+        confirmPassword: ""
     }
 
     const output: ValidationOutput = validateUserInput(input);
@@ -102,11 +103,11 @@ it("Confirm password doesn't equal password", () => {
 })
 
 it("Validation Passed", () => {
-    const input: UserInput = {
+    const input: CreateNewUserRequest = {
         username: "username",
         email: "kyle@foodfinder.com",
         password: "something",
-        confirmedPassword: "something"
+        confirmPassword: "something"
     }
 
     const output: ValidationOutput = validateUserInput(input);

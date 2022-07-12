@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import UserFormView from "@/components/UserFormView.vue";
-import {validateUserInput} from "@/model/UserFormInputValidation";
 import {ref} from "vue";
+import {type CreateNewUserRequest, useUserStore} from "@/model/CurrentUser";
+import {UserApi} from "@/api/UserApi";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 const errorMessage = ref();
 const username = ref();
@@ -9,19 +13,19 @@ const email = ref();
 const password = ref();
 const confirmedPassword = ref();
 
-const signUp = () => {
-  const validationOutput = validateUserInput({
+const signUp = async () => {
+  const newUserRequest: CreateNewUserRequest = {
     username: username.value === undefined ? "" : username.value.trim(),
     email: email.value === undefined ? "" : email.value.trim(),
     password: password.value === undefined ? "" : password.value.trim(),
-    confirmedPassword: confirmedPassword.value === undefined ? "" : confirmedPassword.value.trim()
-  })
-
-  if (!validationOutput.isSuccess) {
-    errorMessage.value = validationOutput.errorMessage;
+    confirmPassword: confirmedPassword.value === undefined ? "" : confirmedPassword.value.trim()
+  }
+  const userStore = useUserStore();
+  const response = await userStore.createNewUser(newUserRequest, new UserApi());
+  if(!response.isSuccess) {
+    errorMessage.value = response.errorMessage;
   } else {
-    errorMessage.value = "";
-    console.log("passed client side validation")
+    await router.push("/")
   }
 }
 </script>

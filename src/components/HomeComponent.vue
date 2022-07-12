@@ -1,23 +1,25 @@
 <script setup lang="ts">
-import {currentUserStore} from '@/model/CurrentUser';
+import {useUserStore} from '@/model/CurrentUser';
 import {useRouter} from "vue-router";
 import axios from "axios";
-import {ref} from "vue";
+import {ref, computed} from "vue";
 import type {Group} from "@/model/Group";
 
-const store = currentUserStore();
+const store = useUserStore();
 const router = useRouter();
 
 const groups = ref([])
 const openGroup = (group: Group) => {
   router.push(`/group/${group.id}`)
 }
+const username = computed(() => {
+  return store.getSignedInUser();
+})
 
-const username = store.username;
-if (username === "") {
+if (username.value === "") {
   router.push("/welcome");
 } else {
-  axios.get(`/get-groups/${username}`)
+  axios.get(`/get-groups/${username.value}`)
       .then(function (response) {
         groups.value = response.data;
       })
@@ -28,6 +30,7 @@ if (username === "") {
   <div class="relative flex justify-center mt-24">
     <div class="rounded bg-gradient-to-r from-cyan-500 to-blue-500 w-1/2 text-white">
       <div class="p-12">
+        <h1 id="user-welcome" class="text-2xl">Welcome {{ username }}!</h1>
         <h1 class="text-2xl">Groups</h1>
         <div>
           <div
