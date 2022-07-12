@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import {useRouter} from "vue-router";
-import {currentUserStore} from "@/model/CurrentUser";
 import UserFormView from "@/components/UserFormView.vue";
 
 const router = useRouter();
 const login = () => {
-  currentUserStore().setUsername("kcnklub");
   router.push("/");
 }
 </script>

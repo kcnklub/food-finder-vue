@@ -8,6 +8,12 @@ import "./index.css";
 createServer({
     routes() {
         this.namespace = "";
+        this.post("/createNewUser", () => {
+            return {
+                userId: "user-id",
+                username: "kcnklub"
+            }
+        })
         this.get("/get-groups/kcnklub", () => {
             return [
                 {
