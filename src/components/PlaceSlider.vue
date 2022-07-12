@@ -30,15 +30,19 @@ getRandomPlace();
   <div class="relative flex justify-center mt-24">
     <div class="rounded bg-gradient-to-r from-cyan-500 to-blue-500 w-1/2 text-white">
       <div class="p-12">
-        <h1 class="text-2xl">{{ currentPlace.name }}</h1>
         <div>
           <div>
-            <img :src="currentPlace.photoReference" alt="No Image found">
+            <h1 class="flex text-2xl justify-center">{{ currentPlace.name }}</h1>
+            <div class="flex justify-center">
+              <img :src="currentPlace.photoReference" alt="No Image found">
+            </div>
             <div>
               <a :href="linkToGoogleMaps">Open Google Maps</a>
             </div>
-            <button>Like</button>
-            <button>Dislike</button>
+            <div class="rounded-lg, justify-center">
+              <button @click="getRandomPlace()" class="swipe-button like-button">Like</button>
+              <button @click="getRandomPlace()" class="swipe-button dislike-button">Dislike</button>
+            </div>
           </div>
         </div>
       </div>
@@ -47,4 +51,19 @@ getRandomPlace();
 </template>
 
 <style>
+.swipe-button {
+  @apply w-1/2 p-1 rounded-lg
+}
+.like-button {
+  @apply bg-green-400
+}
+.like-button:hover {
+  @apply bg-green-500
+}
+.dislike-button{
+  @apply bg-red-400
+}
+.dislike-button:hover {
+  @apply bg-red-500
+}
 </style>
