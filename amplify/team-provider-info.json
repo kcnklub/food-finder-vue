@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-foodfindervue-dev-192239-authRole",
+      "UnauthRoleArn": "arn:aws:iam::433072029159:role/amplify-foodfindervue-dev-192239-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::433072029159:role/amplify-foodfindervue-dev-192239-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-foodfindervue-dev-192239-deployment",
+      "UnauthRoleName": "amplify-foodfindervue-dev-192239-unauthRole",
+      "StackName": "amplify-foodfindervue-dev-192239",
+      "StackId": "arn:aws:cloudformation:us-east-1:433072029159:stack/amplify-foodfindervue-dev-192239/125753f0-030b-11ed-9829-1226ba888c4b",
+      "AmplifyAppId": "d1ejcl2y6etvd"
+    },
+    "categories": {
+      "auth": {
+        "foodfindervue5cd624cd": {}
+      }
+    }
+  }
+}

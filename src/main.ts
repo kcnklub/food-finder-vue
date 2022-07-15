@@ -5,6 +5,13 @@ import {createServer} from "miragejs";
 import {createPinia} from "pinia";
 import "./index.css";
 
+import {Amplify, Auth} from "aws-amplify";
+import awsmobile from "@/aws-exports";
+
+Amplify.configure(awsmobile);
+Auth.configure(awsmobile);
+
+
 createServer({
     routes() {
         this.namespace = "";
@@ -89,10 +96,11 @@ createServer({
             return array[Math.floor(Math.random() * array.length)]
         })
         this.passthrough("http://localhost:8080/place");
+        this.passthrough("https://cognito-idp.us-east-1.amazonaws.com/");
     }
 })
 
 const app = createApp(App)
 app.use(router);
 app.use(createPinia());
-app.mount('#app')
+app.mount('#app');

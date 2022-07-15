@@ -6,14 +6,21 @@
         <div class="flex justify-start lg:w-0 lg:flex-1">
           <router-link to="/">
             <h1 class="title">
-              Food Finder
+              Welcome to Food Finder {{ username }}
             </h1>
           </router-link>
         </div>
-        <PopoverGroup as="nav" class="hidden md:flex space-x-10">
+        <PopoverGroup as="nav" class="hidden md:flex space-x-10" v-if="username === ''">
           <router-link to="/login" class="text-base font-medium text-gray-500 hover:text-gray-900">
             <p class="title title-button">
               Sign In
+            </p>
+          </router-link>
+        </PopoverGroup>
+        <PopoverGroup as="nav" class="hidden md:flex space-x-10" v-if="username !== ''">
+          <router-link to="/login" class="text-base font-medium text-gray-500 hover:text-gray-900">
+            <p class="title title-button" @click="signOut()">
+              Sign Out
             </p>
           </router-link>
         </PopoverGroup>
@@ -23,8 +30,26 @@
 </template>
 
 <script setup>
-import {Popover, PopoverGroup} from '@headlessui/vue'
+import { ref, onMounted} from "vue";
+import { Popover, PopoverGroup } from '@headlessui/vue'
+import { Auth } from "aws-amplify";
 
+let username = ref("");
+
+const signOut = () => {
+  Auth.signOut();
+  username.value = "";
+}
+
+onMounted(() => {
+  Auth.currentAuthenticatedUser()
+      .then((user) => {
+        username.value = user.username;
+      })
+      .catch(() => {
+        console.log("not signed in");
+      })
+})
 </script>
 
 <style>
