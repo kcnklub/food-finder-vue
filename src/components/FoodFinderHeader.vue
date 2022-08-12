@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <Popover class="relative bg-gradient-to-r from-cyan-500 to-blue-500">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
