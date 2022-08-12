@@ -1,29 +1,43 @@
 <script setup lang="ts">
-import {useUserStore} from '@/model/CurrentUser';
 import {useRouter} from "vue-router";
-import axios from "axios";
-import {ref, computed} from "vue";
+import {ref, onMounted} from "vue";
 import type {Group} from "@/model/Group";
 
-const store = useUserStore();
+//@ts-ignore
+import {Authenticator, useAuthenticator} from "@aws-amplify/ui-vue";
+import {Auth,} from "aws-amplify";
+import axios from "axios";
+
 const router = useRouter();
 
 const groups = ref([])
 const openGroup = (group: Group) => {
   router.push(`/group/${group.id}`)
 }
-const username = computed(() => {
-  return store.getSignedInUser();
+let signedIn = false;
+let username = ref("");
+onMounted(() => {
+  Auth.currentAuthenticatedUser()
+      .then((user) => {
+        console.log("signed in");
+        userIsSignedIn(user.username);
+
+      })
+      .catch(() => {
+        console.log("not signed in")
+        signedIn = false
+      })
 })
 
-if (username.value === "") {
-  router.push("/welcome");
-} else {
+const userIsSignedIn = (newUsername: string) => {
+  signedIn = true;
+  username.value = newUsername;
   axios.get(`/get-groups/${username.value}`)
       .then(function (response) {
         groups.value = response.data;
-      })
+      });
 }
+
 </script>
 
 <template>
